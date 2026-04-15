@@ -1,0 +1,12 @@
+kubectl:
+  - Cluster Statuses:
+    - k3s kubetcl get node
+    - kubectl get pods
+    - kubectl get namespaces
+
+  - Change Node Role:
+    - k3s kubectl label node <NODE NAME> node-role.kubernetes.io/worker=worker
+
+  - Cluster Actions:
+      - kubetcl create namespace <NAME>
+

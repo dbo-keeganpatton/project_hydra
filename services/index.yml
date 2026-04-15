@@ -1,0 +1,4 @@
+apps:
+  argus:
+    - Prometheus Monitoring Stack
+    - Namespace: hercules
