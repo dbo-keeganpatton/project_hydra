@@ -21,14 +21,10 @@
     extraGroups = [ "wheel" "sudo" ]; 
   };
 
-
-  services.logind.settings = {
-  # Ensure the system stays on when the lid is closed
-      Login = {
-      HandleLidSwitch = "ignore";
-      HandleLidSwitchDocked = "ignore";
-    };
-  };
+  services.logind.extraConfig = ''
+    HandleLidSwitch=ignore
+    HandleLidSwitchDocked=ignore
+  '';
 
   environment.systemPackages = with pkgs; [
       kubernetes-helm
