@@ -3,6 +3,7 @@
 {
   imports = [
     ../../modules/k3s/server.nix
+    ../../modules/security/sudo.nix
     ./hardware-configuration.nix
   ];
 
