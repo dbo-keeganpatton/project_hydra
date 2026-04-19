@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Hydra - Homelab Documentation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      background: #0b0f14;
+      color: #e6edf3;
+    }
+    header {
+      background: #111826;
+      padding: 2rem;
+      border-bottom: 1px solid #1f2a37;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    header p {
+      color: #9ca3af;
+      margin-top: 0.5rem;
+    }
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    section {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #1f2a37;
+    }
+    h2 {
+      color: #60a5fa;
+    }
+    code {
+      background: #111826;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      color: #93c5fd;
+    }
+    .card {
+      background: #111826;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Project Hydra</h1>
+  <p>Homelab Kubernetes Cluster Documentation (k3s + NixOS + PiOS Lite)</p>
+</header>
+
+<main>
+
+  <section>
+    <h2>Overview</h2>
+    <p>
+      Project Hydra is a distributed homelab Kubernetes environment built using <code>k3s</code>,
+      running across NixOS-based machines and Raspberry Pi nodes. It is a lightweight,
+      reproducible, and highly available cluster for learning, experimentation, and self-hosted services.
+    </p>
+  </section>
+
+  <section>
+    <h2>Cluster Architecture</h2>
+    <div class="card">
+      <ul>
+        <li><strong>Control Plane:</strong> hydra-1 (primary k3s server)</li>
+        <li><strong>Worker Nodes:</strong> hydra-4 + Raspberry Pi nodes (PiOS Lite)</li>
+        <li><strong>Networking:</strong> Flat LAN cluster network</li>
+        <li><strong>Container Runtime:</strong> containerd (via k3s)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Current Nodes</h2>
+    <div class="card">
+      <ul>
+        <li><code>hydra-1</code> → Kubernetes server / control plane</li>
+        <li><code>hydra-4</code> → Worker node (general workloads)</li>
+        <li><code>Pi nodes (hydra-3 & hydra-4)</code> → Lightweight compute / future expansion</li>
+        <li><code>hydra-5</code> Worker node (general workloads) </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Namespaces</h2>
+    <p>The cluster is organized using Kubernetes namespaces for isolation and structure.</p>
+    <div class="card">
+      <ul>
+        <li><code>default</code> → general workloads</li>
+        <li><code>kube-system</code> → system components</li>
+        <li><code>kube-public</code> / <code>kube-node-lease</code></li>
+        <li><code>hercules</code> → application namespace (monitoring workloads)</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Observability</h2>
+    <p>
+      Monitoring is being introduced using Grafana-based tooling within the cluster.
+    </p>
+    <div class="card">
+      <ul>
+        <li>Grafana deployed internally for metrics visualization</li>
+        <li>Accessible over LAN (not yet publicly exposed)</li>
+        <li>Planned: Prometheus integration for full cluster metrics</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Storage Layer</h2>
+    <p>
+      Persistent storage is planned using <strong>Longhorn</strong> for distributed block storage across nodes.
+    </p>
+    <div class="card">
+      <ul>
+        <li>Target: replicate storage across hydra-1 and hydra-4</li>
+        <li>Goal: fault tolerance for stateful workloads</li>
+        <li>Current status: not yet deployed</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Tooling & Management</h2>
+    <div class="card">
+      <ul>
+        <li><code>kubectl</code> for cluster management</li>
+        <li>NixOS for reproducible system configuration</li>
+        <li>k3s for lightweight Kubernetes distribution</li>
+        <li>SSH-based admin access from personal workstation</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Current Goals</h2>
+    <div class="card">
+      <ul>
+        <li>Deploy Longhorn across capable nodes</li>
+        <li>Standardize Helm usage for reproducible deployments</li>
+        <li>Improve Git-based versioning of Kubernetes manifests</li>
+        <li>Expose selected services securely over LAN (and later WAN if desired)</li>
+        <li>Add CI/CD pipeline for cluster updates</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Notes</h2>
+    <p>
+      This document is automatically served via GitHub Pages from the <code>/docs</code> directory.
+      It represents the current state of Project Hydra and is expected to evolve as the cluster grows.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  Project Hydra • Homelab Documentation • GitHub Pages
+</footer>
+
+</body>
+</html>
