@@ -1,0 +1,3 @@
+comments: >
+  This is a Raspberry PI 3 Model B+ and is controlled manually via ssh
+  It must be manually aligned to k3s versions mandated by Nix Node Flakes
